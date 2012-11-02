@@ -1,0 +1,14 @@
+# The first field, (fs_spec), describes the block special device, the local filesystem, or the remote filesystem to be mounted.
+# The second field, (fs_file), describes the mount point for the filesystem.
+# The third field, (fs_vfstype), describes the type of the filesystem.
+# The fourth field, (fs_mntops), describes the mount options associated with the filesystem.
+# The fifth field, (fs_freq), is used for these filesystems by the dump(8) command to determine which filesystems need to be dumped.
+# The sixth field, (fs_passno), is used by the fsck(8) program to determine the order in which filesystem checks are done at reboot time.
+# Examples:
+#     UUID=DF000C7E-AE0C-3B15-B730-DFD2EF15CB91 /export hfs   ro
+#     UUID=FAB060E9-79F7-33FF-BE85-E1D3ABD3EDEA none    hfs   rw,noauto
+#     LABEL=The\040Volume\040Name\040Is\040This none    msdos ro
+
+#fs_spec#                                    #fs_file#    #fs_vfstype#     #fs_mntops#    #fs_freq#    #fs_passno#
+# Hide "Mac OS X Install" partion
+UUID=5E7DB4BD-2A8F-35A4-9AF5-F514F13E7546    none         hfs              rw,noauto      0            0
