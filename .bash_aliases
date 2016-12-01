@@ -6,7 +6,6 @@ elif [[ -z $LS_COLORS ]]; then
 	export LS_COLORS="rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:"
     alias ls="$(which ls) --color=always"
 fi
-alias ll='CLICOLOR_FORCE=1 ls -lhA $*'
 #export WHICH="$(which gwhich 2>/dev/null || which which 2>/dev/null)"
 #alias which='alias | $WHICH --tty-only --read-alias --show-dot --show-tilde'
 
@@ -43,6 +42,7 @@ alias gt='git'
 alias gi='git'
 
 # I guess this is as good a place as any for defining functions
+ll(){ CLICOLOR_FORCE=1 ls -lhA $* | awk -f ~/.ls.awk; }
 
 # function for stripping the hostname out of a URL and passing to a utility like ping or dig
 url_util(){ $(which $1) $(echo $2 | sed 's?.*//??;s?/.*??'); }
