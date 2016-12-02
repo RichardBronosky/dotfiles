@@ -56,3 +56,11 @@ set laststatus=2
 set hidden
 set ts=4 sw=4 sts=4
 set hls ic
+
+" Dead tree awesomeness
+set printfont=courier:h6
+set printoptions=paper:letter,number:y,syntax:y,duplex:off
+" to print...
+" :hardcopy
+" to print preview...
+" :hardcopy >out.ps | !open out.ps
