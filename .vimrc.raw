@@ -1,0 +1,21 @@
+set nocompatible
+filetype off
+syntax on
+set modelines=5
+set modeline
+set scrolloff=4
+set laststatus=2 
+set backspace=2
+set hidden
+set ts=4 sw=4 sts=4
+set hls ic
+
+" python stuff
+autocmd BufRead,BufNewFile   *.py setlocal et
+autocmd FileType yaml setlocal et sw=2 ts=2 sts=2
+
+" backups and swap directory
+autocmd BufWritePre  *    let &bex = '-' . strftime("%Y-%m-%d@%X") . '~'
+set directory=~/.vim/swp//
+set backupdir=~/.vim/backup//
+set backup
