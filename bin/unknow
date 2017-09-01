@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+host=$1
+gsed "/$host/d" ~/.ssh/known_hosts > /tmp/unknow.tmp
+
+diff="$(diff -u ~/.ssh/known_hosts /tmp/unknow.tmp)"
+
+[[ -n $diff ]] && echo "$diff" || { echo "Host $host not found."; exit; }
+
+reply=y
+[[ -t 0 ]] && { # if not a TTY assume the reply above
+read -p 'Apply this change? (y/N) ' `# prompt and read reply`\
+     -t 5   `# timeout (non-zero exit) after 5 seconds` \
+     -n 1   `# read only 1 character` \
+     -s     `# no local echo` \
+      reply `# store in $reply, if non-zero exit do next command` ||
+reply=n ; }
+
+[[ $reply =~ ^(y|Y)$ ]] && {
+    echo Y
+	gsed -i "/$host/d" ~/.ssh/known_hosts
+} || echo N
+echo

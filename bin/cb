@@ -1,0 +1,43 @@
+#!/bin/bash
+
+if [[ -p /dev/stdin ]]; then # stdin is a pipe
+	p0=1
+else
+	p0=0
+fi
+
+if [[ -t 0 ]]; then          # stdin is a tty
+	t0=1
+else
+	t0=0
+fi
+
+if [[ -t 1 ]]; then          # stdout is a tty
+	t1=1
+else
+	t1=0
+fi
+
+_in(){
+	cat | pbcopy
+}
+
+_out(){
+	pbpaste
+}
+
+if [[ $p0 -eq 1 || $t0 -eq 0 ]]; then # stdin is pipe-ish
+	#echo -e "\n  stdin is a pipe" 1>&2
+    _in # so send it to the pasteboard
+	if [[ $t1 -eq 0 ]]; then # also, stdout is not a tty (meaning it must be a pipe or redirection)
+		#echo -e "\n  stdout is not a tty" 1>&2
+		_out # so pass that pipe/redirection the content of the pasteboard (enables `man tee` like chaining)
+    fi
+else # stdin is not a pipe
+	#echo -e "\n  stdin is not a pipe" 1>&2
+    _out # so output the pasteboard
+	if [[ $t1 -eq 1 ]]; then # stdout is a tty (so we don't have to be strict about not altering the output)
+		#echo -e "\n  stdout is a tty" 1>&2
+		echo # prevent the prompt from being on the same line
+	fi
+fi
