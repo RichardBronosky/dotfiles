@@ -1,0 +1,11 @@
+# Bash history preferences
+
+# don't put duplicate lines in the history. See bash(1) for more options
+#export HISTCONTROL=ignoredups
+export HISTSIZE=10000
+export HISTTIMEFORMAT="%F-%T%t"
+shopt -s histappend
+# See: https://unix.stackexchange.com/questions/147563/how-do-i-repeat-the-last-command-without-using-the-arrow-keys/147572#147572
+bind Space:magic-space
+
+# vim: et sw=4 ts=4 sts=4 syntax=sh

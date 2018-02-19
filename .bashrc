@@ -4,6 +4,7 @@
 
 export PATH=$HOME/bin:$PATH
 export PATH=$HOME/Library/Python/3.6/bin:$PATH
+export PATH=$HOME/Library/Python/2.7/bin:$PATH
 # golang setup -see: http://stackoverflow.com/a/27709931/117471
 export GOPATH=$HOME/Go
 export GOROOT=/usr/local/opt/go/libexec
@@ -22,17 +23,17 @@ export CHEF_REPO=$HOME/src/chef
 export HISTSIZE=10000
 export HISTTIMEFORMAT="%F-%T%t"
 shopt -s histappend
-
-export PAGER='less -Rie'
-export LESS='-Rie'
-export EDITOR=$(which vim)
-export GREP_OPTIONS="--color=auto"
+# See: https://unix.stackexchange.com/questions/147563/how-do-i-repeat-the-last-command-without-using-the-arrow-keys/147572#147572
+bind Space:magic-space
 
 # make less more friendly for non-text input files, see lesspipe(1)
 #[ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 
-# Use TMUX
-#[[ -n "$PS1" && -z "$TMUX" ]] && { tmux attach || tmux; }
+for f in .bash_aliases .bashrc.env.ext .bashrc.man.ext .bashrc.hist.ext .bashrc.tmux.ext; do
+    if [ -f ~/$f ]; then
+        source ~/$f
+    fi
+done
 
 if [ -f ~/.bash_private.gpg ]; then
 	eval "$(gpg --decrypt ~/.bash_private.gpg 2>/dev/null)"
@@ -40,8 +41,6 @@ fi
 
 set -o vi
 
-# See: https://unix.stackexchange.com/questions/147563/how-do-i-repeat-the-last-command-without-using-the-arrow-keys/147572#147572
-bind Space:magic-space
 
 
-# vi:ts=4:sw=4:et:tw=0
+# vim: et sw=4 ts=4 sts=4 syntax=sh

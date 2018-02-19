@@ -19,9 +19,11 @@ Plugin 'gmarik/Vundle.vim'          " https://github.com/gmarik/Vundle.vim
 
 Plugin 'bling/vim-airline'          " https://github.com/bling/vim-airline
 Plugin 'tpope/vim-fugitive'         " https://github.com/tpope/vim-fugitive
+Plugin 'tpope/vim-unimpaired'       " https://github.com/tpope/vim-unimpaired
 Plugin 'nvie/vim-flake8'            " https://github.com/nvie/vim-flake8 requires: sudo pip install flake8
 Plugin 'vim-syntastic/syntastic'    " https://github.com/vim-syntastic/syntastic
-
+"let g:auto_save = 0                 " enable AutoSave on Vim startup
+"Plugin 'vim-scripts/vim-auto-save'  " https://github.com/vim-scripts/vim-auto-save
 Plugin 'Valloric/YouCompleteMe'     " https://github.com/Valloric/YouCompleteMe
 Plugin 'sudar/vim-arduino-syntax'   " https://github.com/sudar/vim-arduino-syntax
 Plugin 'jamessan/vim-gnupg'         " https://github.com/jamessan/vim-gnupg
@@ -77,13 +79,11 @@ set backup
 
 syntax on
 set modelines=5
-set modeline
 set scrolloff=4
 set laststatus=2 
-set backspace=2
-set hidden
-set ts=4 sw=4 sts=4
-set hls ic
+set backspace=indent,eol,start
+set tabstop=4 shiftwidth=4 softtabstop=4
+set hidden modeline hlsearch smartcase autoindent smartindent
 
 " Dead tree awesomeness
 set printfont=courier:h6

@@ -1,0 +1,5 @@
+# Use vim to read man pages
+
+export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 so=4 nomod nolist nonu noma' -\""
+
+# vim: et sw=4 ts=4 sts=4 syntax=sh
