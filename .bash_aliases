@@ -47,7 +47,7 @@ alias ussh="ssh -F ~/.ssh/config.ubuntu"
 alias essh="ssh -F ~/.ssh/config.ec2-user"
 
 # I guess this is as good a place as any for defining functions
-function ll() { CLICOLOR_FORCE=1 ls -lhA $* | awk -f ~/.ls.awk; }
+eval 'function ll() { CLICOLOR_FORCE=1 ls -lhA $* | awk -f '"$(cd "$(dirname "$BASH_SOURCE")"; pwd)"'/.ls.awk; }'
 
 # function for stripping the hostname out of a URL and passing to a utility like ping or dig
 function url_util() { $(which $1) $(echo $2 | sed 's?.*//??;s?/.*??'); }

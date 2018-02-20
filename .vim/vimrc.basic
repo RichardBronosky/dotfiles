@@ -1,0 +1,15 @@
+if filereadable("/usr/share/vim/vim80/defaults.vim")
+    source /usr/share/vim/vim80/defaults.vim
+elseif filereadable("/usr/share/vim/vim74/vimrc_example.vim")
+    source /usr/share/vim/vim74/vimrc_example.vim
+endif
+
+set modeline
+set mouse=
+" the following requires: mkdir ~/.vim/tmp
+set backupdir=~/.vim/tmp//
+set directory=~/.vim/tmp//
+set hidden
+set cursorline
+
+" vim: et sw=4 ts=4 sts=4 syntax=vim
